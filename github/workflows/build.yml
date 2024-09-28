@@ -1,0 +1,24 @@
+name: Build
+on: push
+permissions:
+  contents: write
+jobs:
+  build:
+    name: build flutter web
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '3.24.1'
+    - run: flutter pub get
+    - run: flutter --version
+    - env:
+        API_KEY: ${{ secrets.API_KEY }}
+      run: flutter build web  --dart-define=API_KEY=$API_KEY --base-href "/temporary/"
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: build/web # The folder the action should deploy.
+        clean: true # Clean destination before deploy files
