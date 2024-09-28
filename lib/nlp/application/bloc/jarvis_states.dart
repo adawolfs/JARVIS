@@ -36,7 +36,7 @@ class JarvisChatState {
     this.speechListening = false,
     this.errorMsg = '',
     this.history = '',
-    this.speechLocale = 'es_US',
+    this.speechLocale = '',
   });
 
   JarvisChatState copyWith({

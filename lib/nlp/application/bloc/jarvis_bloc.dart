@@ -24,8 +24,6 @@ class ChatBloc extends Bloc<JarvisEvent, JarvisChatState> {
   final SpeechToText _speechToText = SpeechToText();
   final ModelService _modelService = GetIt.instance<ModelService>();
 
-  String speechLocale = 'es_US';
-
   bool get isIOS => !kIsWeb && Platform.isIOS;
   bool get isAndroid => !kIsWeb && Platform.isAndroid;
   bool get isWeb => kIsWeb;
@@ -66,7 +64,7 @@ class ChatBloc extends Bloc<JarvisEvent, JarvisChatState> {
       onResult: (result) {
         add(JarvisSpeechResult(result.recognizedWords));
       },
-      localeId: state.speechLocale,
+      localeId: 'es_US',
       pauseFor: const Duration(seconds: 2),
     );
 

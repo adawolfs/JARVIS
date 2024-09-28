@@ -9,7 +9,6 @@ import 'package:jarvis/nlp/domain/entities/tts_enum.dart';
 import 'package:jarvis/nlp/application/bloc/preferences_bloc.dart';
 import 'package:jarvis/nlp/application/bloc/preferences_events.dart';
 import 'package:jarvis/nlp/application/bloc/preferences_states.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -151,34 +150,6 @@ class SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _buildSpeechDropdown() {
-    return FutureBuilder(
-      future: SpeechToText().locales(),
-      builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
-        if (snapshot.hasData) {
-          return DropdownButtonFormField<String>(
-            decoration: const InputDecoration(
-              labelText: 'Language',
-              border: OutlineInputBorder(),
-            ),
-            value: snapshot.data!.isNotEmpty
-                ? snapshot.data!.first as String?
-                : '',
-            items: snapshot.data!
-                .map((lang) => DropdownMenuItem(
-                      value: lang as String?,
-                      child: Text(lang as String? ?? 'Unknown'),
-                    ))
-                .toList(),
-            onChanged: (value) => setState(() => _selectedLanguage = value),
-          );
-        } else {
-          return const CircularProgressIndicator();
-        }
-      },
-    );
-  }
-
   Widget _buildModelDropdown() {
     return Container(
       padding: const EdgeInsets.only(bottom: 20.0),
@@ -234,7 +205,6 @@ class SettingsPageState extends State<SettingsPage> {
             max: 2.0,
             onChanged: (value) => setState(() => _pitch = value),
           ),
-          _buildSpeechDropdown(),
           const Spacer(),
           _buildButtons(),
         ],
