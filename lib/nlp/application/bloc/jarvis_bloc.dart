@@ -64,7 +64,7 @@ class ChatBloc extends Bloc<JarvisEvent, JarvisChatState> {
       onResult: (result) {
         add(JarvisSpeechResult(result.recognizedWords));
       },
-      localeId: 'es_GT',
+      localeId: 'es_US',
       pauseFor: const Duration(seconds: 2),
     );
 
