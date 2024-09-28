@@ -14,6 +14,8 @@ class TtsSettings extends Equatable {
   final double speechRate;
   final double pitch;
 
+  final String speechLocale;
+
   TtsSettings({
     required this.name,
     required this.language,
@@ -24,6 +26,7 @@ class TtsSettings extends Equatable {
     required this.engines,
     required this.languages,
     required this.model,
+    required this.speechLocale,
   });
 
   @override
@@ -38,6 +41,7 @@ class TtsSettings extends Equatable {
     double? pitch,
     String? engine,
     String? model,
+    String? speechLocale,
   }) {
     return TtsSettings(
       name: name ?? this.name,
@@ -49,6 +53,7 @@ class TtsSettings extends Equatable {
       engines: engines,
       languages: languages,
       model: model ?? this.model,
+      speechLocale: speechLocale ?? this.speechLocale,
     );
   }
 }

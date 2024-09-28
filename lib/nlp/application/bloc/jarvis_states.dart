@@ -23,6 +23,7 @@ class JarvisChatState {
   final bool speechListening;
   final String errorMsg;
   final String history;
+  final String speechLocale;
 
   JarvisChatState({
     this.isLoading = false,
@@ -35,6 +36,7 @@ class JarvisChatState {
     this.speechListening = false,
     this.errorMsg = '',
     this.history = '',
+    this.speechLocale = 'es_US',
   });
 
   JarvisChatState copyWith({
@@ -48,6 +50,7 @@ class JarvisChatState {
     bool? speechListening,
     String? errorMsg,
     String? history,
+    String? speechLocale,
   }) {
     return JarvisChatState(
       isLoading: isLoading ?? this.isLoading,
@@ -60,6 +63,7 @@ class JarvisChatState {
       speechListening: speechListening ?? this.speechListening,
       errorMsg: errorMsg ?? this.errorMsg,
       history: history ?? this.history,
+      speechLocale: speechLocale ?? this.speechLocale,
     );
   }
 }

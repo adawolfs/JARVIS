@@ -42,8 +42,6 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
 
   @override
   Future<TtsSettings> getTtsSettings() async {
-    // await GetIt.instance<FlutterTts>().getEngines;
-    // await GetIt.instance<FlutterTts>().getLanguages;
     return TtsSettings(
       name: _sharedPreferences.getString('jarvis.name') ?? 'Tony Stark',
       language: _sharedPreferences.getString('jarvis.language') ?? 'es-US',
@@ -55,6 +53,7 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
           GeminiModel.GeminiFlash.value,
       engines: [],
       languages: await GetIt.instance<FlutterTts>().getLanguages,
+      speechLocale: 'es-US',
     );
   }
 
